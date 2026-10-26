@@ -3,13 +3,21 @@
     "name": "opb",
     "slug": "opb",
     "version": "1.0.0",
-    "orientation": "portrait",
+    "orientation": "landscape",
     "icon": "./assets/images/icon.png",
     "scheme": "opb",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.anonymous.opb",
+      "infoPlist": {
+        "NSCameraUsageDescription": "One Percent Better needs camera access to analyze your basketball shooting form in real-time.",
+        "NSMicrophoneUsageDescription": "One Percent Better needs microphone access for video recording features.",
+        "NSPhotoLibraryUsageDescription": "One Percent Better needs access to your photo library to analyze recorded shooting videos.",
+        "NSPhotoLibraryAddUsageDescription": "One Percent Better needs permission to save analyzed videos to your photo library."
+      },
+      "deploymentTarget": "16.0"
     },
     "android": {
       "adaptiveIcon": {
@@ -19,7 +27,17 @@
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.READ_MEDIA_IMAGES",
+        "android.permission.READ_MEDIA_VIDEO"
+      ],
+      "minSdkVersion": 30,
+      "package": "com.anonymous.opb"
     },
     "web": {
       "output": "static",
@@ -38,7 +56,23 @@
             "backgroundColor": "#000000"
           }
         }
-      ]
+      ],
+      [
+        "react-native-vision-camera",
+        {
+          "cameraPermissionText": "One Percent Better needs camera access to analyze your basketball shooting form.",
+          "enableMicrophonePermission": true,
+          "microphonePermissionText": "One Percent Better needs microphone access for video recording.",
+          "enableCodeScanner": false
+        }
+      ],
+      [
+        "expo-av",
+        {}
+      ],
+      "./plugins/withPoseLandmarker",
+      "expo-font",
+      "expo-web-browser"
     ],
     "experiments": {
       "typedRoutes": true,
